@@ -10,7 +10,7 @@ class TextFormatter:
     Simple markdown-based (*very* lightweight) formatter to HTML using HTML template.
 
     **How to use (CLI)**
-    - Run the script with optional flags:
+    - Call the `execute` function of this class in a script (main.py, for example) and run the script with optional flags:
         - `python main.py -i text.md -o output.html -t template.html`
     - Defaults (when omitted):
         - `-i/--input`: `text.md`
