@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="$lang$">
 
 <head>
     <meta charset="utf-8" />
@@ -102,7 +102,7 @@
             const [y, m, d] = iso.split('-').map(Number);
             const dt = new Date(y, m - 1, d);
 
-            const formatted = new Intl.DateTimeFormat('pt-BR', {
+            const formatted = new Intl.DateTimeFormat('$lang$', {
                 day: 'numeric',
                 month: 'long',
                 year: 'numeric'
