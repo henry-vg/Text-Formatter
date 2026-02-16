@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <style>
+        @font-face {
+            font-family: "Garamond";
+            src: url("file:///mnt/c/Windows/Fonts/GARA.TTF") format("truetype");
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: "Garamond";
+            src: url("file:///mnt/c/Windows/Fonts/GARABD.TTF") format("truetype");
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: "Garamond";
+            src: url("file:///mnt/c/Windows/Fonts/GARAIT.TTF") format("truetype");
+            font-weight: normal;
+            font-style: italic;
+        }
+
+        @page {
+            size: 14cm 21cm;
+            margin: 2.5cm 1.5cm 2.5cm 1.5cm;
+
+            @bottom-center {
+                content: "—\2002" counter(page) "\2002—";
+                font-family: "Garamond", serif;
+                font-size: 11pt;
+            }
+        }
+
+        html {
+            hyphens: auto;
+        }
+
+        body {
+            margin: 0;
+            font-size: 11pt;
+            font-family: "Garamond", serif;
+            line-height: normal;
+        }
+
+        h1 {
+            break-before: page;
+            page-break-before: always;
+        }
+
+        .doc-title,
+        h1 {
+            font-weight: normal;
+            text-align: center;
+            font-size: 18pt;
+            font-variant-caps: small-caps;
+            text-transform: capitalize;
+            margin-bottom: 36pt;
+        }
+
+        .doc-author-date {
+            text-align: center;
+            font-style: italic;
+            font-size: 11pt;
+            margin-bottom: 8pt;
+        }
+
+        .doc-body p {
+            text-align: justify;
+            text-indent: 0.7cm;
+            margin: 0;
+            margin-block: 0;
+        }
+
+        div.stanza {
+            margin-bottom: 16pt;
+        }
+
+        div.stanza>p {
+            text-align: left;
+            padding-left: 1.2cm;
+            text-indent: -1.2cm;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="doc-author-date">$author$ – <span class="doc-date">$date$</span></div>
+    <div class="doc-title">$title$</div>
+    <div class="doc-body">$body$</div>
+
+    <script>
+        document.querySelectorAll('.doc-date').forEach(el => {
+            const iso = el.textContent.trim();
+
+            if (!/^\d{4}-\d{2}-\d{2}$/.test(iso)) return;
+
+            const [y, m, d] = iso.split('-').map(Number);
+            const dt = new Date(y, m - 1, d);
+
+            const formatted = new Intl.DateTimeFormat('pt-BR', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            }).format(dt);
+
+            console.log(formatted);
+
+            el.textContent = formatted;
+        });
+    </script>
+</body>
+
+</html>
